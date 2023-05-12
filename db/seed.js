@@ -1,10 +1,10 @@
 const client = require("./client");
-const {
-  users,
-  activities,
-  routines,
-  routine_activities,
-} = require("./seedData");
+// const {
+//   users,
+//   activities,
+//   routines,
+//   routine_activities,
+// } = require("./seedData");
 
 async function dropTables() {
   // Drop all tables in order
@@ -33,31 +33,9 @@ async function createTables() {
     CREATE TABLE users (
       id SERIAL PRIMARY KEY,
       username varchar(255) UNIQUE NOT NULL,
-      password varchar(255) NOT NULL,
+      password varchar(255) NOT NULL
       );
-
-      CREATE TABLE routines(
-        id SERIAL PRIMARY KEY,
-        creator_id INTERGER REFERENCES users(id),
-        is_public BOOLEAN DEFAULT false,
-        name varchar(255) UNIQUE NOT NULL,
-        goal TEXT NOT NULL,
-      );
-
-      CREATE TABLE activities(
-        id SERIAL PRIMARY KEY,
-        name varchar(255) UNIQUE NOT NULL,
-        description TEXT NOT NULL,
-
-      );
-
-      CREATE TABLE routine_activities(
-        id SERIAL PRIMARY KEY,
-        routine_Id INTEGER REFERENCES routines(Id),
-        activity_Id INTEGER REFERENCES activities(Id),
-        duration INTEGER,
-        count INTEGER,
-      )
+    
       `);
   } catch (error) {
     console.error("Error building tables!");
