@@ -37,6 +37,29 @@ async function createTables() {
       username varchar(255) UNIQUE NOT NULL,
       password varchar(255) NOT NULL
       );
+
+      CREATE TABLE routines(
+        id SERIAL PRIMARY KEY,
+        creator_id INTEGER REFERENCES users(id),
+        is_public BOOLEAN DEFAULT false,
+        name varchar(255) UNIQUE NOT NULL,
+        goal TEXT NOT NULL
+      );
+
+      CREATE TABLE activities(
+        id SERIAL PRIMARY KEY,
+        name varchar(255) UNIQUE NOT NULL,
+        description TEXT NOT NULL
+
+      );
+
+      CREATE TABLE routine_activities(
+        id SERIAL PRIMARY KEY,
+        routine_Id INTEGER REFERENCES routines(Id),
+        activity_Id INTEGER REFERENCES activities(Id),
+        duration INTEGER,
+        count INTEGER
+      )
     
       `);
   } catch (error) {
