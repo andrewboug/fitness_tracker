@@ -1,10 +1,12 @@
 const client = require("./client");
-// const {
-//   users,
-//   activities,
-//   routines,
-//   routine_activities,
-// } = require("./seedData");
+const { createUser } = require("./adapters/users");
+
+const {
+  users,
+  activities,
+  routines,
+  routine_activities,
+} = require("./seedData");
 
 async function dropTables() {
   // Drop all tables in order
@@ -44,7 +46,15 @@ async function createTables() {
 }
 
 async function populateTables() {
-  // Seed tables with dummy data from seedData.js
+  console.log("Populating tables...");
+  try {
+    for (const user of users) {
+      const createdUser = await createUser(user);
+      console.log("User: ", createdUser);
+    }
+  } catch (error) {
+    console.log(error);
+  }
 }
 
 async function rebuildDb() {

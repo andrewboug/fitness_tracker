@@ -1,9 +1,24 @@
 const client = require("../client");
 
-function createUser() {}
+async function createUser({ username, password }) {
+  const {
+    rows: [user],
+  } = await client.query(
+    `
+INSERT INTO users(username, password)
+VALUES ($1, $2)
+ON CONFLICT (username) DO NOTHING
+RETURNING *;
+`,
+    [username, password]
+  );
+  return user;
+}
 
 function getUser() {}
 
 function getUserById() {}
 
 function getUserByUsername() {}
+
+module.exports = { createUser };
