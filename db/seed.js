@@ -8,10 +8,50 @@ const {
 
 async function dropTables() {
   // Drop all tables in order
+  try {
+    console.log("Starting to drop tables...");
+    await client.query(`
+    DROP TABLE IF EXISTS activities;
+    DROP TABLE IF EXISTS routine_activities;
+    DROP TABLE IF EXISTS routines;
+    DROP TABLE IF EXISTS users;
+    `);
+
+    console.log("Finished dropping tables!");
+  } catch (error) {
+    console.error("Error dropping tables!");
+    throw error;
+  }
 }
 
 async function createTables() {
   // Define your tables and fields
+  try {
+    console.log("Starting to build tables...");
+
+    await client.query(`
+    CREATE TABLE users (
+      id SERIAL PRIMARY KEY,
+      username varchar(255) UNIQUE NOT NULL,
+      password varchar(255) NOT NULL,
+      );
+
+      CREATE TABLE routines(
+
+      );
+
+      CREATE TABLE routine_activities(
+
+      );
+
+      CREATE TABLE activities(
+        
+      )
+      `);
+  } catch (error) {
+    console.error("Error building tables!");
+    throw error;
+  }
 }
 
 async function populateTables() {
