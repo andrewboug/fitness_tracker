@@ -25,5 +25,6 @@
   "bugs": {
     "url": "https://github.com/andrewboug/fitness_tracker/issues"
   },
-  "homepage": "https://github.com/andrewboug/fitness_tracker#readme"
+  "homepage": "https://github.com/andrewboug/fitness_tracker#readme",
+  "devDependencies": {}
 }
