@@ -19,6 +19,17 @@ function getUser() {}
 
 function getUserById() {}
 
-function getUserByUsername() {}
+async function getUserByUsername(username) {
+  const {
+    rows: [user],
+  } = await client.query(
+    `
+      SELECT * FROM users
+      WHERE username = $1
+      `,
+    [username]
+  );
+  return user;
+}
 
-module.exports = { createUser };
+module.exports = { createUser, getUserByUsername };
