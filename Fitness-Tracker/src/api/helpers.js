@@ -1,4 +1,4 @@
-const BASE_URL = `https://fitnesstrac-kr.herokuapp.com/`;
+const BASE_URL = `https://fitnesstrac-kr.herokuapp.com/api`;
 
 export async function registerUser(username, password) {
   try {
@@ -46,10 +46,8 @@ export async function loginUser(username, password) {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        user: {
-          username,
-          password,
-        },
+        username,
+        password,
       }),
     });
     const result = await response.json();
